@@ -1,0 +1,4 @@
+{"schemaVersion":1,"eventId":"2cdac00a-a449-453c-b50e-865a6830e430","runId":"run-6ce1b145-72a7-4428-8a71-306743c60e2a","timestampMs":1777234900021,"source":"router","phase":"start","commandName":"git.showAnalytics"}
+{"schemaVersion":1,"eventId":"a0fb66c5-a6b3-4ebd-b085-13df09c858a4","runId":"run-6ce1b145-72a7-4428-8a71-306743c60e2a","timestampMs":1777234900101,"source":"router","phase":"complete","commandName":"git.showAnalytics","resultKind":"ok","durationMs":81}
+{"schemaVersion":1,"eventId":"7ea16151-eed4-40f0-9760-fe0d5fbcbb8d","runId":"run-59b3add5-bac4-4aec-a1e3-9be8f7a05d29","timestampMs":1777234908499,"source":"router","phase":"start","commandName":"git.showAnalytics"}
+{"schemaVersion":1,"eventId":"2e65b176-f30f-452f-8872-01a7526d6489","runId":"run-59b3add5-bac4-4aec-a1e3-9be8f7a05d29","timestampMs":1777234908502,"source":"router","phase":"complete","commandName":"git.showAnalytics","resultKind":"ok","durationMs":3}
