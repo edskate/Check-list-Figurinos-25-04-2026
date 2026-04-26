@@ -80,6 +80,34 @@
 
   textarea{min-height:70px; resize:vertical}
 
+  .music-scroll{
+    height:185px;
+    overflow-y:auto;
+    border:1px solid var(--gold);
+    border-radius:14px;
+    background:#050505;
+    padding:8px;
+    margin-top:8px;
+  }
+
+  .music-option{
+    width:100%;
+    text-align:left;
+    background:#151515;
+    color:#fff;
+    border:1px solid #333;
+    border-radius:10px;
+    padding:10px;
+    margin:5px 0;
+    cursor:pointer;
+  }
+
+  .music-option.active{
+    background:var(--gold);
+    color:#000;
+    border-color:var(--gold2);
+  }
+
   button{
     width:100%;
     border:0;
@@ -203,7 +231,9 @@
     <input id="nome" placeholder="Ex: Edy, Renan, Abizael..." />
 
     <label>Música / sequência</label>
-    <input id="musica" placeholder="Ex: Wanna Be Startin’ Somethin, Beat it , Dangerous , Billie Jean, Thriller..." />
+    <input id="musica" placeholder="Escolha na lista ou digite uma música..." />
+
+    <div class="music-scroll" id="musicScroll"></div>
 
     <label>Número da ordem</label>
     <input id="ordem" type="number" placeholder="Ex: 1, 2, 3..." />
@@ -252,6 +282,37 @@
   let stream = null;
   let currentPhoto = "";
   const STORAGE_KEY = "checklistFigurinosHistoricoV1";
+
+  const musicas = [
+    "Wanna Be Startin’ Somethin’",
+    "Smooth Criminal",
+    "Dangerous",
+    "Don't Stop ’Til You Get Enough",
+    "Beat It",
+    "Billie Jean",
+    "Thriller",
+    "Black or White",
+    "Shake Your Body (Down To The Ground)",
+    "Heal the World",
+    "Bad"
+  ];
+
+  function renderMusicList(){
+    const box = document.getElementById("musicScroll");
+    box.innerHTML = musicas.map((m, index) => `
+      <button type="button" class="music-option" onclick="selectMusic('${escapeJs(m)}', ${index})">
+        ${index + 1}. ${escapeHtml(m)}
+      </button>
+    `).join("");
+  }
+
+  function selectMusic(nomeMusica, index){
+    document.getElementById("musica").value = nomeMusica;
+    document.getElementById("ordem").value = index + 1;
+
+    document.querySelectorAll(".music-option").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".music-option")[index].classList.add("active");
+  }
 
   function updateClock(){
     const now = new Date();
@@ -350,6 +411,8 @@
     document.getElementById("statusFigurino").value = "OK";
     document.getElementById("obs").value = "";
 
+    document.querySelectorAll(".music-option").forEach(btn => btn.classList.remove("active"));
+
     if(clearPhoto){
       currentPhoto = "";
       document.getElementById("photoPreview").style.display = "none";
@@ -412,9 +475,12 @@
     });
   }
 
+  function escapeJs(text){
+    return String(text).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+  }
+
+  renderMusicList();
   renderHistory();
 </script>
-<hr>
-<a href="index01.html"><h2>Check-list Figurinos</h2></a>
 </body>
 </html>
